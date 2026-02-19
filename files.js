@@ -18,10 +18,19 @@ try {
   } else if (!fs.existsSync(fullPath)) {
     fs.mkdirSync(fullPath);
     console.log(`Ordner "${folderName}" wurde erfolgreich im Volume erstellt`);
-    await fs.writeFile(folderName, inhalt);
+    for (let i = 1; i <= 100; i++) {
+        let inhalt = "hahahahahahahahah"
+        await fs.writeFile(fullPath, inhalt + i);
+    }
+
   } else {
     console.log(`Ordner "${folderName}" existiert bereits im Volume`);
     await fs.writeFile(folderName, inhalt);
+    for (let i = 1; i <= 100; i++) {
+        let inhalt = "hahahahahahahahah"
+        await fs.writeFile(fullPath, inhalt + i);
+    }
+
   }
 } catch (err) {
   console.error("Fehler beim Erstellen:", err.message);
