@@ -23,9 +23,10 @@ try {
     console.log(`Ordner "${folderName}" existiert bereits im Volume`);
     const inhalt = args[0];
     const zielPfad = path.join('/storage/', 'email.txt');
+    console.log(args[0]);
     await writeFile(zielPfad, inhalt, 'utf8');
-
     const daten = await readFile(zielPfad, 'utf8');
+    console.log("Erfolgreich geschrieben!");
     console.log('📖 Datei-Inhalt:', daten);
   }
 } catch (err) {
