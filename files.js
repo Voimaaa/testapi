@@ -18,19 +18,15 @@ try {
   } else if (!fs.existsSync(fullPath)) {
     fs.mkdirSync(fullPath);
     console.log(`Ordner "${folderName}" wurde erfolgreich im Volume erstellt`);
-    for (let i = 1; i <= 100; i++) {
-        let inhalt = "hahahahahahahahah"
-        await fs.writeFile(fullPath, inhalt + i);
-    }
 
   } else {
     console.log(`Ordner "${folderName}" existiert bereits im Volume`);
-    await fs.writeFile(folderName, inhalt);
-    for (let i = 1; i <= 100; i++) {
-        let inhalt = "hahahahahahahahah"
-        await fs.writeFile(fullPath, inhalt + i);
-    }
+    const inhalt = args[0];
+    const zielPfad = path.join('/storage/', 'email.txt');
+    await writeFile(zielPfad, inhalt, 'utf8');
 
+    const daten = await readFile(zielPfad, 'utf8');
+    console.log('📖 Datei-Inhalt:', daten);
   }
 } catch (err) {
   console.error("Fehler beim Erstellen:", err.message);
